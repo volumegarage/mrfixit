@@ -1,4 +1,160 @@
+// MIXINS
+.hamburger {
+  @include hamburger(black, red, 50px, 30px, 5px, 3);
+  // @include position(absolute, 80,0,0,0);
+}
+
+// Noway @font-face {
+//   $noway = 'Noway-Regular-webfont', sans-serif;
+// }
+
+h2.slogan {
+  color: red;
+  position: relative;
+  text-align: center;
+
+}
+
+.box-element {
+  @include xy-cell();
+  @include box(200px, 200px);
+  background-color: #FFFFFF;
+  @include flex-align-self(middle);
+  box-shadow: 0 5px 17px -8px rgba(9, 30, 66, 0.25), 0 0 1px rgba(9, 10, 6, 0.31);
+}
+
 .top-header {
+  height: rem-calc(30);
   background-color: black;
+}
+
+
+h2 {
+  @include breakpoint(small only) {
+  display: none;
+}
+  @include breakpoint(medium) {
+  font-size: rem-calc(18);
   color: white;
+  margin-left: rem-calc(15);
+  @include font-bold();
+}
+}
+
+.mobile-phone {
+  @include xy-cell();
+  @include breakpoint(small only) {
+    font-size: rem-calc(24);
+    color: white;
+    margin-left: rem-calc(15);
+    @include font-bold();
+    text-align: center;
+  }
+  @include breakpoint(medium) {
+    display: none;
+  }
+}
+
+
+.wrapper {
+  @include xy-grid-container();
+
+  .header-content {
+    @include xy-grid();
+    @include padding(1);
+    height: rem-calc(170);
+    position: relative;
+
+  .logo {
+    @include xy-grid();
+    @include xy-cell();
+    max-width: rem-calc(200);
+    position: relative;
+    @include flex-align(center, middle);
+    @include breakpoint(medium) {
+      @include xy-cell(3);
+      @include flex-align-self(middle);
+  }
+}
+
+
+  .right-side {
+    @include xy-grid();
+    @include breakpoint(medium) {
+    @include xy-cell(9);
+    @include flex-align(right,bottom);
+
+  }
+
+}
+
+}
+
+
+
+.main-navigation {
+  @include xy-cell();
+  display: none;
+  @include breakpoint(medium) {
+  @include menu-base();
+  @include flex-align(right, bottom);
+
+  li {
+
+    @include breakpoint(small only) {
+      width: 100%;
+      text-align: center;
+    }
+
+    a {
+    @include text-transform(uppercase);
+    @include font-bold(700);
+    font-size: rem-calc(16);
+
+    &:hover {
+      color: red;
+      }
+    }
+  }
+
+  }
+}
+
+.mobile-menu {
+  @include breakpoint(medium) {
+    display: none;
+  }
+}
+
+
+
+} // Wrapper @extend ;
+
+// Footer Stuffage
+.site-footer {
+  background-color: $primary-color;
+  .container {
+    @include xy-grid-container();
+    color: white;
+    .footer-content {
+      @include xy-grid();
+      @include padding(2,2,4,2);
+      .footer-box {
+        @include xy-cell();
+        @include breakpoint(medium) {
+        @include xy-cell(4);
+        text-align: center;
+        h3 {
+          color: white;
+          @include text-transform(uppercase);
+        }
+      }
+      }
+    }
+  }
+  p.copyright {
+    text-align: center;
+    color: white;
+    @include padding(1, null, 1, null);
+  }
 }

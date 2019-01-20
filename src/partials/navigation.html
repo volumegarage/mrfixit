@@ -1,3 +1,70 @@
-<div class="top-header medium-12 cell">
-  <h1>Hello from the Top Header</h1>
-</div>
+<header class="site-header">
+  <div class="wrapper">
+    <div class="header-content">
+
+      <div class="logo">
+        <img src="assets/img/MrFixIt2019Asset_20115.svg" alt="Mr. Fix It Home Improvements Logo">
+      </div>
+
+    <div class="right-side">
+
+
+      <div class="off-canvas position-right" id="offCanvas" data-off-canvas>
+        <ul class="menu vertical" data-animate="menu-in menu-out">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="aboutmrfixit.html">About Us</a></li>
+    <li><a href="#">Our Process</a></li>
+
+    <ul class="dropdown menu" data-dropdown-menu is-drilldown-submenu-parent>
+      <li>
+        <a href="#">Services</a>
+        <ul class="menu">
+          <li><a href="#">Bathroom Remodeling</a></li>
+          <li><a href="#">Kitchen Remodeling</a></li>
+          <li><a href="#">Screened Decks</a></li>
+          <li><a href="#">Decks</a></li>
+          <li><a href="#">Additions</a></li>
+
+          </li>
+        </ul>
+
+      </ul>
+
+
+      <ul class="dropdown menu" data-dropdown-menu>
+        <li>
+          <a href="#">Projects</a>
+          <ul class="menu">
+            <li><a href="#">Item 1A</a></li>
+            <li><a href="#">Item 2A</a></li>
+            <li><a href="#">Item 3A</a></li>
+            <li><a href="#">Item 4A</a></li>
+          </li>
+            <li><a href="#">Contact Us</a></li>
+        </ul>
+
+
+
+
+
+      </div>
+
+      <nav id="main-nav" class="main-navigation">
+        <li><a href="#">About Us</a></li>
+        <li><a href="">Our Services</a></li>
+        <li><a href="">Our Work</a></li>
+        <li><a href="">Our Process</a></li>
+        <li><a href="">Contact Us</a></li>
+      </nav>
+
+      <div class="mobile-menu" data-hide-for="medium" data-open="offCanvas">
+      <a class="hamburger" type="button" data-toggle="main-nav" href="#"></a>
+      </div>
+
+      </div> <!-- Right Side End -->
+    </div><!-- Header Content End -->
+    <div class="box-element">{{slogan}}</div>
+  </div> <!-- Container End -->
+</header> <!-- Header End -->
+
+<h2 class="slogan">{{slogan}}</h2>
