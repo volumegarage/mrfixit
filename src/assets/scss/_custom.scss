@@ -1,6 +1,9 @@
 // MIXINS
 .hamburger {
-  @include hamburger(black, red, 50px, 30px, 5px, 3);
+  @include hamburger(#e3e3e3, red, 50px, 30px, 5px, 3);
+  position: absolute;
+  top: 55px;
+  right: 35px;
   // @include position(absolute, 80,0,0,0);
 }
 
@@ -9,37 +12,35 @@
 // }
 
 h2.slogan {
-  color: red;
-  position: relative;
-  text-align: center;
-
-}
-
-.box-element {
+  @include xy-grid();
   @include xy-cell();
-  @include box(200px, 200px);
-  background-color: #FFFFFF;
-  @include flex-align-self(middle);
-  box-shadow: 0 5px 17px -8px rgba(9, 30, 66, 0.25), 0 0 1px rgba(9, 10, 6, 0.31);
+  color: red;
+  @include flex-align(center, middle);
+  font-size: 24px;
+  font-family: "Aleo";
+  text-align: center;
 }
+
 
 .top-header {
   height: rem-calc(30);
   background-color: black;
+
+  h2 {
+    @include breakpoint(small only) {
+    display: none;
+  }
+    @include breakpoint(medium) {
+    font-size: rem-calc(18);
+    color: white;
+    margin-left: rem-calc(15);
+    @include font-normal();
+  }
+  }
 }
 
 
-h2 {
-  @include breakpoint(small only) {
-  display: none;
-}
-  @include breakpoint(medium) {
-  font-size: rem-calc(18);
-  color: white;
-  margin-left: rem-calc(15);
-  @include font-bold();
-}
-}
+
 
 .mobile-phone {
   @include xy-cell();
@@ -61,13 +62,16 @@ h2 {
 
   .header-content {
     @include xy-grid();
+    @include xy-cell();
+    @include flex-align(center, middle);
     @include padding(1);
     height: rem-calc(170);
     position: relative;
 
-  .logo {
+  img.logo  {
     @include xy-grid();
     @include xy-cell();
+    min-width: 200px;
     max-width: rem-calc(200);
     position: relative;
     @include flex-align(center, middle);
@@ -88,6 +92,46 @@ h2 {
 
 }
 
+
+
+}
+
+.off-canvas {
+  background-color: rgba(201, 76, 76, 0.9);
+  li a {
+    color: white;
+  }
+  .menu {
+    background-color: black;
+  }
+}
+
+.free-estimate {
+  @include xy-grid();
+  @include breakpoint(small only) {
+      display: none;
+  }
+  @include breakpoint(medium) {
+    float: right;
+    width: 300px;
+    position: relative;
+    margin-top: -10px;
+
+  .phone-icon {
+      float:left;
+    }
+
+    .free-estimate-call {
+      float: right;
+      font-size: rem-calc(25);
+      line-height: 30px;
+      span {
+        display: table;
+        font-size: rem-calc(30);
+        font-weight: bold;
+      }
+    }
+  }
 }
 
 
@@ -100,7 +144,6 @@ h2 {
   @include flex-align(right, bottom);
 
   li {
-
     @include breakpoint(small only) {
       width: 100%;
       text-align: center;
@@ -130,6 +173,152 @@ h2 {
 
 } // Wrapper @extend ;
 
+// ORBIT Stuffage
+
+.orbit-container {
+  position: relative;
+  max-height: 300px;
+}
+.orbit-caption {
+	position: absolute;
+	top: 5%;
+	left: 25%;
+	width: 50%;
+	height: 30%;
+  background-color: rgba(10, 10, 10, 0.3);
+}
+.orbit-caption p {
+	position: relative;
+	top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+	text-align: center;
+	color: #fefefe;
+  font-size: 48px;
+  font-weight: 900;
+}
+@include breakpoint(small only) {
+.orbit-caption p{
+  font-size: 24px;
+  font-weight: 400;
+ }
+}
+
+.orbit-bullets {
+   display: none;
+}
+
+
+
+
+// SERVICE service-boxes
+.service-box-panel {
+  .container  {
+  @include xy-grid-container();
+  @include flex-align-self(middle);
+
+  .service-boxes {
+    @include xy-grid();
+    @include padding(2,null,2,null);
+    .single-service-box {
+
+      @include xy-cell();
+
+      h2 {
+        font-size: 32px;
+        margin-top: 15px;
+        margin-bottom: 15px;
+        color: #707070;
+        line-height: 34px;
+      }
+      @include breakpoint(medium) {
+        @include xy-cell(20%);
+        text-align: center;
+        @include box(260px, 325px);
+        background-color: #FFFFFF;
+        box-shadow: 0 5px 17px -8px rgba(9, 30, 66, 0.25), 0 0 1px rgba(9, 10, 6, 0.31);
+
+      }
+
+      }
+    }
+  }
+  }
+
+
+
+  // INTERACTION BOX ON HOME PAGE
+  .interaction-box {
+    @include xy-grid-container();
+    @include xy-grid();
+    background-color: red;
+    height: 450px;
+    .free-estimate-form {
+
+      @include xy-cell(2 of 3);
+      p {
+        font-size: rem-calc(30);
+      }
+    }
+
+    .testimonial-box {
+      @include xy-cell(1 of 3);
+      p {
+        font-size: rem-calc(30);
+      }
+    }
+
+
+  }
+
+
+
+/// ABOUT Page
+main.page-about {
+  @include xy-grid-container();
+  @include xy-grid();
+  @include flex-align(justify, top);
+  .left-col-about {
+    @include xy-cell();
+
+    img {
+      @include xy-cell();
+      max-width: 300px;
+      @include flex-align(center, middle);
+    }
+
+    .image-effect {
+      @include rotate(-5);
+      border: rem-calc(10) solid $white;
+      @include shadow();
+      @include breakpoint(small only) {
+        margin-bottom: 30px;
+      }
+    }
+    p {
+      font-size: rem-calc(20);
+      font-family: "Aleo";
+      line-height: rem-calc(34);
+    }
+    blockquote {
+      font-size: rem-calc(40);
+      font-family: "Aleo";
+    }
+    @include breakpoint(medium) {
+    @include xy-cell(2 of 3);
+
+  }
+  }
+  .aside-form {
+    @include xy-cell();
+    background-color: green;
+    @include breakpoint(medium) {
+    @include xy-cell(1 of 3);
+  }
+  }
+}
+
 // Footer Stuffage
 .site-footer {
   background-color: $primary-color;
@@ -142,7 +331,7 @@ h2 {
       .footer-box {
         @include xy-cell();
         @include breakpoint(medium) {
-        @include xy-cell(4);
+        @include xy-cell(3);
         text-align: center;
         h3 {
           color: white;
