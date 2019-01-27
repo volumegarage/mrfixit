@@ -15,3 +15,10 @@ require('foundation-sites');
 
 
 $(document).foundation();
+
+
+$('.header-content').on('sticky.zf.stuckto:top', function(){
+  $(this).addClass('shrink');
+}).on('sticky.zf.unstuckfrom:top', function(){
+  $(this).removeClass('shrink');
+})

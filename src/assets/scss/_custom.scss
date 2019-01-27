@@ -16,9 +16,10 @@ h2.slogan {
   @include xy-cell();
   color: red;
   @include flex-align(center, middle);
-  font-size: 24px;
+  font-size: 36px;
   font-family: "Aleo";
   text-align: center;
+  margin-top: 25px;
 }
 
 
@@ -26,17 +27,22 @@ h2.slogan {
   height: rem-calc(30);
   background-color: black;
 
+.row {
+  @include xy-grid-container();
   h2 {
     @include breakpoint(small only) {
     display: none;
   }
     @include breakpoint(medium) {
+      @include xy-grid-container();
     font-size: rem-calc(18);
     color: white;
     margin-left: rem-calc(15);
     @include font-normal();
   }
   }
+}
+
 }
 
 
@@ -68,6 +74,7 @@ h2.slogan {
     height: rem-calc(170);
     position: relative;
 
+
   img.logo  {
     @include xy-grid();
     @include xy-cell();
@@ -96,6 +103,7 @@ h2.slogan {
 
 }
 
+
 .off-canvas {
   background-color: rgba(201, 76, 76, 0.9);
   li a {
@@ -115,13 +123,17 @@ h2.slogan {
     float: right;
     width: 300px;
     position: relative;
-    margin-top: -10px;
+    margin-top: 5px;
 
-  .phone-icon {
-      float:left;
-    }
+
 
     .free-estimate-call {
+      .phone-icon {
+          float:left;
+        }
+      @include breakpoint(medium only) {
+          display: none;
+      }
       float: right;
       font-size: rem-calc(25);
       line-height: 30px;
@@ -137,15 +149,16 @@ h2.slogan {
 
 
 .main-navigation {
-  @include xy-cell();
+
   display: none;
   @include breakpoint(medium) {
+  @include xy-grid();
   @include menu-base();
-  @include flex-align(right, bottom);
+  padding-top: 60px;
+
 
   li {
     @include breakpoint(small only) {
-      width: 100%;
       text-align: center;
     }
 
@@ -180,6 +193,9 @@ h2.slogan {
   max-height: 300px;
 }
 .orbit-caption {
+  @include breakpoint(small only) {
+    margin-top: 50px;
+  }
 	position: absolute;
 	top: 5%;
 	left: 25%;
@@ -209,6 +225,35 @@ h2.slogan {
    display: none;
 }
 
+.docs-example-orbit-slide {
+  padding: 2rem 4rem;
+  color: $white;
+
+  .orbit-slide:nth-of-type(1) & {
+    background: dodgerblue;
+  }
+
+  .orbit-slide:nth-of-type(2) & {
+    background: rebeccapurple;
+  }
+
+  .orbit-slide:nth-of-type(3) & {
+    background: darkgoldenrod;
+  }
+
+  .orbit-slide:nth-of-type(4) & {
+    background: lightseagreen;
+  }
+}
+
+
+// Accordian styles
+.accordion-item {
+  @include xy-grid();
+  background-color: black;
+}
+
+
 
 
 
@@ -222,8 +267,16 @@ h2.slogan {
     @include xy-grid();
     @include padding(2,null,2,null);
     .single-service-box {
-
       @include xy-cell();
+    text-align: center;
+
+    .service-image:hover
+{
+	opacity: 0.3;
+	filter: alpha(opacity=30);
+}
+
+
 
       h2 {
         font-size: 32px;
@@ -246,29 +299,98 @@ h2.slogan {
   }
   }
 
+  // Separator IMAGES
+  .separator-image {
+    @include xy-grid();
+    height: 300px;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: color;
+  }
+
+  .pool-image {
+    background-image:url(/assets/img/pool.jpg);
+  }
+
+
+
 
 
   // INTERACTION BOX ON HOME PAGE
   .interaction-box {
     @include xy-grid-container();
     @include xy-grid();
-    background-color: red;
-    height: 450px;
-    .free-estimate-form {
 
-      @include xy-cell(2 of 3);
-      p {
-        font-size: rem-calc(30);
+    @include breakpoint(small only) {
+      display: none;
+    }
+    background-color: red;
+    height: 650px;
+
+
+    .contact-form {
+      @include xy-grid();
+      @include xy-cell(8);
+      padding: 24px;
+
+      .form-greeting {
+        @include xy-cell(8);
+        text-align: center;
+        h2 {
+
+        color: white;
+      }
+      }
+
+
+      .label-input {
+          @include xy-cell(6);
+          margin: auto;
+
+
+
+          label {
+            font-size: rem-calc(24);
+            color: white;
+          }
+
+        }
+
+
+
+      .message-field {
+        @include xy-cell();
+        label {
+          font-size: rem-calc(24);
+          color: white;
+        }
       }
     }
 
     .testimonial-box {
-      @include xy-cell(1 of 3);
-      p {
-        font-size: rem-calc(30);
+      @include xy-cell(4);
+      padding-left: 16px;
+      border-left:2px solid white;
+      @include padding(4,2,4,2);
+      @include flex-align(center, top);
+
+      .testimonial-container {
+        @include padding(3,3,3,3);
+        background-color: white;
+        text-align: center;
+
+        h2 {
+          font-size: 24px;
+        }
+
+        height: 100%;
+        p {
+          font-size: rem-calc(10);
+          color: black;
+
+        }
       }
     }
-
 
   }
 
@@ -319,6 +441,145 @@ main.page-about {
   }
 }
 
+
+// Services Page Templates
+
+.services-container{
+  @include xy-grid-container();
+  @include xy-grid();
+
+  .breadcrumb-header {
+    @include xy-cell();
+    background-color: gray;
+    padding: 36px;
+    h1 {font-size: 24px;
+    color: white;}
+  }
+
+.left-content {
+  @include xy-cell(8);
+padding: 24px;
+  .landingpage-orbit {
+    @include xy-cell();
+  }
+  .contactus {
+  }
+  .process-promo {
+  }
+
+  .service-glossary {
+  }
+}
+
+.lead-form {
+  @include xy-cell(4);
+  position: relative;
+  background-color: blue;
+  padding: 36px;
+  h2, h3 {
+    color: white;
+  }
+  label {
+    color: white;
+  }
+}}
+
+.portfolio-boxes {
+  @include xy-grid-container();
+  @include xy-grid();
+  position: relative;
+
+  h2 {
+  @include xy-grid();
+  text-align: center;
+}
+
+.portfolio-slider-box {
+  @include xy-cell(1 of 3);
+  position: relative;
+  }
+}
+
+
+.job-archive {
+    @include xy-grid-container();
+    @include xy-grid();
+  .job-services {
+    @include xy-cell();
+    @include breakpoint(medium) {
+    @include xy-cell(4);
+    padding: 5px;
+    h3 {
+      background-color: red;
+      padding: 2px;
+      color: white;
+
+    }
+    }
+
+    .overlay-container {
+  position: relative; /* <-- Set as the reference for the positioned overlay */
+}
+
+.overlay-container .overlay {
+  height: 70px;
+  position: absolute; /* <-- Remove the overlay from normal flow         */
+  bottom: 0;          /* <-- Keep the overlay at the bottom of the box   */
+  left: 0;            /* <-- Set left and right properties to 0          */
+  right: 0;           /*     In order to expand the overlay horizontally */
+  font-size: 24px;
+  padding: 0.4rem;
+  background-color: rgba(255, 255, 255, 0.7);
+}
+
+
+  }
+}
+
+
+.projects-container{
+  @include xy-grid-container();
+  @include xy-grid();
+
+.project-detail {
+    @include xy-grid-container();
+    @include xy-grid(80%);
+  .project-services {
+    @include xy-cell();
+    @include breakpoint(medium) {
+    @include xy-cell(4);
+    padding: 5px;
+    h3 {
+      background-color: red;
+      padding: 2px;
+      color: white;
+
+    }
+    }
+
+    .overlay-container {
+  position: relative; /* <-- Set as the reference for the positioned overlay */
+}
+
+.overlay-container .overlay {
+  height: 70px;
+  position: absolute; /* <-- Remove the overlay from normal flow         */
+  bottom: 0;          /* <-- Keep the overlay at the bottom of the box   */
+  left: 0;            /* <-- Set left and right properties to 0          */
+  right: 0;           /*     In order to expand the overlay horizontally */
+  font-size: 24px;
+  padding: 0.4rem;
+  background-color: rgba(255, 255, 255, 0.7);
+}
+
+
+  }
+}
+}
+
+
+
+
 // Footer Stuffage
 .site-footer {
   background-color: $primary-color;
@@ -328,22 +589,110 @@ main.page-about {
     .footer-content {
       @include xy-grid();
       @include padding(2,2,4,2);
+
       .footer-box {
         @include xy-cell();
         @include breakpoint(medium) {
         @include xy-cell(3);
-        text-align: center;
+        text-align: left;
+
         h3 {
           color: white;
           @include text-transform(uppercase);
         }
+        img {
+          max-width: 180px;
+          margin-bottom: 15px;
+          }
+      ul.footer-services {
+        @include xy-grid();
+        font-size: 24px;
+        list-style:none;
+        li {
+          line-height: 30px;
+        }
       }
+        }
+
       }
+
+
+      .footer-box2 {
+        @include xy-cell();
+        @include breakpoint(medium) {
+        @include xy-cell(3);
+        text-align: left;
+        margin-left: 36px;
+        @include text-transform(uppercase);
+
+        h3 {
+          color: white;
+          @include text-transform(uppercase);
+        }
+
+      }
+
+
+
     }
+
+
+
+  p.address shrink {
+    text-align: left;
   }
-  p.copyright {
-    text-align: center;
-    color: white;
-    @include padding(1, null, 1, null);
-  }
+}
+}
+}
+
+p.copyright {
+  text-align: center;
+  color: white;
+  @include padding(1, null, 1, null);
+}
+
+// third footer
+
+
+// third footer
+
+footer .br-footer-blue {
+    background: #004b87;
+    color: #fff;
+    padding: 80px 0;
+
+    img {
+      max-width: 180px;
+      margin-bottom: 35px;
+    }
+
+
+}
+
+.footer-blue-nav h4 a {
+    color: #fff;
+    font-size: 1.4rem;
+}
+
+
+footer .br-footer-red {
+    background: #ef3340;
+    padding: 20px 0;
+    color: #fff;
+}
+
+
+footer .grid-container {
+  @include breakpoint(medium) {
+    padding-right: .9375rem;
+    padding-left: .9375rem;
+}
+}
+
+
+footer .grid-margin-x>.large-shrink {
+  @include breakpoint(medium) {
+    width: auto;
+}
+
 }
