@@ -5,8 +5,12 @@
 @import 'motion-ui';
 @import 'https://fonts.googleapis.com/css?family=Aleo';
 @import 'https://fonts.googleapis.com/css?family=Merriweather';
-@import "https://fonts.googleapis.com/css?family=Merriweather|Poppins";
+@import 'https://fonts.googleapis.com/css?family=Merriweather|Poppins';
 // @import 'src/assets/Noway-Regular-webfont/;
+
+@import 'https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css';
+
+@import 'https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400';
 
 // Global styles
 @include foundation-global-styles;
@@ -64,7 +68,6 @@
 // @include foundation-prototype-classes;
 
 @import 'custom';
-
-// Motion UI
+@import 'fontawesome/fontawesome'; // Motion UI
 @include motion-ui-transitions;
 @include motion-ui-animations;
