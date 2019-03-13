@@ -14,7 +14,8 @@ h2.slogan {
   font-size: 36px;
   font-family: 'Aleo';
   text-align: center;
-  margin-top: 20px;
+  margin-top: 10px;
+  margin-bottom: 30px;
 }
 
 .top-header {
@@ -64,7 +65,24 @@ $topbar-sticky-shrink-bg: rgba(255, 255, 255, 0.5);
   background: $topbar-sticky-shrink-bg;
 
   .menu {
-    background: $topbar-sticky-shrink-bg;
+    @include xy-grid-container();
+    @include breakpoint(small only) {
+      display: none;
+    }
+    @include breakpoint(medium) {
+      // background: $topbar-sticky-shrink-bg;
+      font-family: 'Roboto Condensed', sans-serif;
+      font-size: rem-calc(20);
+      a:link {
+        color: black;
+      }
+      a:visited {
+        color: black;
+      }
+      a:hover {
+        color: red;
+      }
+    }
   }
 }
 
@@ -74,7 +92,13 @@ $topbar-sticky-shrink-bg: rgba(255, 255, 255, 0.5);
 }
 
 [data-sticky] {
+  @include xy-grid-container();
   width: 100%;
+  .logo {
+    @include xy-grid-container();
+    margin-top: 15px;
+    width: 400px;
+  }
 }
 
 .wrapper {
@@ -87,17 +111,13 @@ $topbar-sticky-shrink-bg: rgba(255, 255, 255, 0.5);
     @include xy-cell();
     @include flex-align(center, middle);
     @include padding(1);
-
     position: relative;
     background-color: rgba(255, 255, 255, 0.3);
     @include padding(1, 1, 1, 1);
 
-    img.logo,
     topbar-sticky-shrink {
       @include xy-grid();
       @include xy-cell();
-      min-width: 150px;
-      position: relative;
       @include flex-align(center, middle);
       @include breakpoint(medium) {
         @include xy-cell(3);
@@ -310,21 +330,22 @@ $clean-hero-slider-accent: $warning-color;
 
 //*
 .orbit-container {
-  max-height: 450px;
+  height: 450px;
   button {
-    margin-top: 35px;
+    margin-top: 25px;
   }
 }
 .orbit-caption {
   @include breakpoint(small only) {
-    margin-top: 50px;
+    margin-top: 20px;
   }
   position: absolute;
-  top: 25%;
-  left: 25%;
-  width: 50%;
+  top: 300px;
+  width: 100%;
   height: 30%;
-  background-color: rgba(33, 87, 127, 0.5);
+  border-radius: 15px;
+  font-family: 'Roboto Condensed', sans-serif;
+  background-color: rgba(0, 0, 0, 0.3);
 }
 .orbit-caption p {
   position: relative;
@@ -334,7 +355,7 @@ $clean-hero-slider-accent: $warning-color;
   transform: translateY(-50%);
   text-align: center;
   color: #fefefe;
-  font-size: 40px;
+  font-size: 30px;
   line-height: 50px;
   font-weight: 900;
 }
@@ -363,13 +384,14 @@ $clean-hero-slider-accent: $warning-color;
     .service-boxes {
       @include xy-grid();
       @include padding(1, null, 2, null);
+
       .single-service-box {
         @include xy-cell();
         text-align: center;
 
         .service-image:hover {
-          opacity: 0.3;
-          filter: alpha(opacity=30);
+          opacity: 0.7;
+          filter: alpha(opacity=70);
         }
 
         h2 {
@@ -381,6 +403,7 @@ $clean-hero-slider-accent: $warning-color;
         }
         @include breakpoint(medium) {
           @include xy-cell(20%);
+          border-radius: 10px;
           text-align: center;
           @include box(260px, 325px);
           background-color: #ffffff;
@@ -402,7 +425,7 @@ $clean-hero-slider-accent: $warning-color;
 }
 
 .pool-image {
-  background-image: url(/assets/img/widescreendeck.jpg);
+  background-image: url(/assets/img/Features/widescreendeck.jpg);
 }
 
 .accordion-content {
@@ -416,7 +439,18 @@ $clean-hero-slider-accent: $warning-color;
   @include breakpoint(small only) {
     display: none;
   }
-  background-color: #4095ae;
+  background: #00b4db; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #0083b0,
+    #00b4db
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #0083b0,
+    #00b4db
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
   height: 100%;
 
   .contact-form {
@@ -428,10 +462,12 @@ $clean-hero-slider-accent: $warning-color;
       @include xy-cell(8);
       text-align: left;
       margin-top: 24px;
+
       h1,
       h2,
       h4 {
         color: white;
+        font-family: 'Aleo';
         line-height: 34px;
       }
     }
@@ -441,8 +477,9 @@ $clean-hero-slider-accent: $warning-color;
       margin: auto;
 
       label {
-        font-size: rem-calc(18);
+        font-size: rem-calc(24);
         color: white;
+        font-family: 'Aleo';
       }
     }
 
@@ -451,6 +488,7 @@ $clean-hero-slider-accent: $warning-color;
       label {
         font-size: rem-calc(24);
         color: white;
+        font-family: 'Aleo';
       }
     }
   }
@@ -458,8 +496,8 @@ $clean-hero-slider-accent: $warning-color;
   .testimonial-box {
     @include xy-cell(4);
     padding-left: 16px;
-    border-left: 2px solid white;
-    @include padding(1, 1, 1, 1);
+    border-left: 0.5px solid white;
+    @include padding(2, 1, 1, 2);
     @include flex-align(center, top);
 
     .testimonial-container {
@@ -467,19 +505,41 @@ $clean-hero-slider-accent: $warning-color;
       background-color: white;
       text-align: center;
       height: 100%;
+      margin: 0;
 
       h2 {
         font-size: 24px;
+
+        color: #36735c;
+        font-weight: bold;
+        margin-top: 25px;
+        font-family: 'Roboto Condensed', sans-serif;
       }
-      height: 100%;
+
+      h3 {
+        font-size: 20px;
+        margin: 0;
+        font-weight: bold;
+        color: orange;
+        text-align: left;
+        font-family: 'Roboto Condensed', sans-serif;
+      }
 
       p {
-        font-size: rem-calc(20);
+        font-size: rem-calc(18);
+        margin: 0;
+        width: 200px;
         color: black;
+        font-family: 'Aleo';
+        text-align: left;
       }
 
       .button {
         margin-top: 15px;
+        background-color: #36735c;
+        color: white;
+        font-size: rem-calc(20);
+        font-family: 'Roboto Condensed', sans-serif;
       }
     }
   }
@@ -539,24 +599,46 @@ main.page-about {
 
 // Services Page Templates
 
+.breadcrumb-header {
+  @include breakpoint(small only) {
+    display: none;
+  }
+  background-color: #e3e3e3;
+  margin-top: 35px;
+  @include padding(1, 1, 0.5, 3);
+  h1 {
+    @include xy-grid-container();
+    font-size: 14px;
+    color: black;
+    font-family: 'Roboto Condensed', sans-serif 300;
+    a:link {
+      color: black;
+    }
+    a:hover {
+      color: #707070;
+      text-decoration: underline;
+    }
+    a:visited {
+      color: black;
+    }
+  }
+}
+
 .services-container {
   @include xy-grid-container();
   @include xy-grid();
-
-  .breadcrumb-header {
-    @include xy-cell();
-    background-color: red;
-    margin-top: 55px;
-    @include padding(1, null, 1, 3);
-    h1 {
-      font-size: 20px;
-      color: white;
-      background-color: #e3e3e3;
-    }
-  }
+  padding-bottom: 100px;
 
   .left-content {
+    @include breakpoint(small only) {
+      @include xy-cell();
+    }
     @include xy-cell(8);
+
+    h1 {
+      font-family: 'Aleo';
+      margin-top: 25px;
+    }
     p {
       font-size: rem-calc(20);
       font-family: 'Aleo';
@@ -572,7 +654,16 @@ main.page-about {
     }
 
     .service-glossary {
+      h1 {
+        font-size: 24px;
+      }
       p {
+        margin-top: 30px;
+        span {
+          font-family: 'Roboto Condensed';
+          font-size: 24px;
+          color: green;
+        }
         font-size: rem-calc(20);
         font-family: 'Aleo';
         line-height: rem-calc(34);
@@ -581,20 +672,29 @@ main.page-about {
   }
 
   .lead-form {
-    @include xy-cell(4);
     position: relative;
     background-color: #4095ae;
     padding: 36px;
+    font-family: 'Aleo';
     h2 {
       color: white;
-      font-size: 24px;
+      font-size: 30px;
+      font-family: 'Aleo';
     }
     h3 {
       color: white;
       font-size: 16px;
+      font-family: 'Aleo';
     }
     label {
       color: white;
+      font-size: 16px;
+    }
+    @include breakpoint(small only) {
+      @include xy-cell();
+    }
+    @include breakpoint(medium) {
+      @include xy-cell(4);
     }
   }
 }
@@ -618,11 +718,15 @@ main.page-about {
 .job-archive {
   @include xy-grid-container();
   @include xy-grid();
+  @include padding(2, null, 2, null);
   .job-services {
     @include xy-cell();
     @include breakpoint(medium) {
       @include xy-cell(4);
       padding: 5px;
+      margin: 15px;
+      box-shadow: 0 5px 17px -8px rgba(9, 30, 66, 0.25),
+        0 0 1px rgba(9, 10, 6, 0.31);
       h3 {
         background-color: red;
         padding: 2px;
@@ -651,14 +755,22 @@ main.page-about {
 .project-archives {
   @include xy-grid-container();
   @include xy-grid();
+
   .project-archive {
     @include xy-cell();
     @include breakpoint(medium) {
       @include xy-cell(3);
+      margin: 15px;
+      border-radius: 10px;
+      box-shadow: 0 5px 17px -8px rgba(9, 30, 66, 0.25),
+        0 0 1px rgba(9, 10, 6, 0.31);
       padding: 5px;
+      img {
+        border-radius: 10px;
+      }
       h3 {
         background-color: red;
-        padding: 2px;
+        padding: 0px;
         color: white;
       }
     }
@@ -673,116 +785,123 @@ main.page-about {
       bottom: 0; /* <-- Keep the overlay at the bottom of the box   */
       left: 0; /* <-- Set left and right properties to 0          */
       right: 0; /*     In order to expand the overlay horizontally */
-      font-size: 24px;
+      font-size: 18px;
+      font-family: 'Roboto Condensed';
       padding: 0.4rem;
-      background-color: rgba(255, 255, 255, 0.7);
-    }
-  }
-}
-
-.projects-container {
-  @include xy-grid-container();
-  @include xy-grid();
-
-  .project-detail {
-    @include xy-grid-container();
-    @include xy-grid(80%);
-    .project-services {
-      @include xy-cell();
-      @include breakpoint(medium) {
-        @include xy-cell(4);
-        padding: 5px;
-        h3 {
-          background-color: red;
-          padding: 2px;
-          color: white;
-        }
-      }
-
-      .overlay-container {
-        position: relative; /* <-- Set as the reference for the positioned overlay */
-      }
-
-      .overlay-container .overlay {
-        height: 70px;
-        position: absolute; /* <-- Remove the overlay from normal flow         */
-        bottom: 0; /* <-- Keep the overlay at the bottom of the box   */
-        left: 0; /* <-- Set left and right properties to 0          */
-        right: 0; /*     In order to expand the overlay horizontally */
-        font-size: 24px;
-        padding: 0.4rem;
-        background-color: rgba(255, 255, 255, 0.7);
+      background-color: rgba(54, 115, 92, 0.7);
+      text-align: center;
+      a:visited {
+        color: white;
       }
     }
   }
 }
+
+// .projects-container {
+//   @include xy-grid-container();
+//   @include xy-grid();
+
+//   .project-detail {
+//     @include xy-grid-container();
+//     @include xy-grid(80%);
+
+//     .project-services {
+//       @include xy-cell();
+//       @include breakpoint(medium) {
+//         @include xy-cell(4);
+//         padding: 5px;
+//         h3 {
+//           background-color: red;
+//           padding: 2px;
+//           color: white;
+//         }
+//       }
+
+//       .overlay-container {
+//         position: relative; /* <-- Set as the reference for the positioned overlay */
+//       }
+
+//       .overlay-container .overlay {
+//         height: 70px;
+//         position: absolute; /* <-- Remove the overlay from normal flow         */
+//         bottom: 0; /* <-- Keep the overlay at the bottom of the box   */
+//         left: 0; /* <-- Set left and right properties to 0          */
+//         right: 0; /*     In order to expand the overlay horizontally */
+//         font-size: 24px;
+//         padding: 0.4rem;
+//         background-color: rgba(255, 255, 255, 0.7);
+//       }
+//     }
+//   }
+// }
 
 // Footer Stuffage
-.site-footer {
-  background-color: $primary-color;
-  .container {
-    @include xy-grid-container();
-    color: white;
-    .footer-content {
-      @include xy-grid();
-      @include padding(2, 2, 4, 2);
+// .site-footer {
+//   background-color: $primary-color;
+//   .container {
+//     @include xy-grid-container();
+//     color: white;
 
-      .footer-box {
-        @include xy-cell();
-        @include breakpoint(medium) {
-          @include xy-cell(3);
-          text-align: left;
+//     .footer-content {
+//       @include xy-grid();
+//       @include padding(2, 2, 4, 2);
 
-          h3 {
-            color: white;
-            font-size: 14px;
-            @include text-transform(uppercase);
-          }
-          img {
-            max-width: 180px;
-            margin-bottom: 15px;
-          }
-          ul.footer-services {
-            @include xy-grid();
-            font-size: 12px;
-            list-style: none;
-            li {
-              line-height: 30px;
-            }
-          }
-        }
-      }
+//       .footer-box {
+//         @include xy-cell();
+//         @include breakpoint(medium) {
+//           @include xy-cell(3);
+//           text-align: left;
 
-      .footer-box2 {
-        @include xy-cell();
-        @include breakpoint(medium) {
-          @include xy-cell(3);
-          text-align: left;
-          margin-left: 36px;
-          @include text-transform(uppercase);
+//           h3 {
+//             color: white;
+//             font-size: 14px;
+//             @include text-transform(uppercase);
+//           }
 
-          h3 {
-            color: white;
-            @include text-transform(uppercase);
-            font-size: 12px;
-          }
-        }
-      }
+//           img {
+//             max-width: 180px;
+//             margin-bottom: 15px;
+//           }
+//           ul.footer-services {
+//             @include xy-grid();
+//             font-size: 12px;
+//             list-style: none;
+//             li {
+//               line-height: 30px;
+//             }
+//           }
+//         }
+//       }
 
-      p.address shrink {
-        text-align: left;
-      }
-    }
-  }
-}
+//       .footer-box2 {
+//         @include xy-cell();
+//         @include breakpoint(medium) {
+//           @include xy-cell(3);
+//           text-align: left;
+//           margin-left: 36px;
 
-p.copyright {
-  text-align: center;
-  color: white;
-  @include padding(1, null, 1, null);
-}
+//           @include text-transform(uppercase);
 
-// third footer
+//           h3 {
+//             color: white;
+//             @include text-transform(uppercase);
+//             font-size: 12px;
+//           }
+//         }
+//       }
+
+//       p.address shrink {
+//         text-align: left;
+//       }
+//     }
+//   }
+// }
+
+// p.copyright {
+//   text-align: center;
+//   color: white;
+//   @include padding(1, null, 1, null);
+// }
 
 // third footer
 
@@ -791,22 +910,39 @@ footer .br-footer-green {
   color: #fff;
   padding: 50px;
 
+  h4 {
+    font-family: 'Roboto Condensed';
+  }
+
   img {
     max-width: 180px;
     margin-bottom: 35px;
     margin-top: -25px;
   }
-}
 
-.footer-blue-nav h4 a {
-  color: #fff;
-  font-weight: bold !important;
-  font-size: 26px !important;
-}
+  ul.about {
+    li {
+      list-style-type: none;
+      margin-left: -20px;
+      line-height: 36px;
+      font-family: 'Aleo';
+      a:hover {
+        text-decoration: underline;
+      }
+    }
+  }
 
-.footer-blue-nav h5 a {
-  color: #fff;
-  font-size: 1rem;
+  ul.services {
+    li {
+      list-style-type: none;
+      margin-left: -20px;
+      line-height: 36px;
+      font-family: 'Aleo';
+      a:hover {
+        text-decoration: underline;
+      }
+    }
+  }
 }
 
 footer .br-footer-red {
@@ -831,6 +967,183 @@ footer .grid-margin-x > .large-shrink {
   }
 }
 
-.accordion-background {
-  background-color: #000;
+// .accordion-background {
+//   background-color: #000;
+// }
+
+ul.core-values {
+  li {
+    list-style: none;
+    font-family: 'Aleo';
+
+    h4 {
+      font-family: 'Roboto Condensed';
+      font-weight: bold;
+      color: #36735c;
+      border-bottom: solid 1px #e3e3e3;
+    }
+  }
+}
+
+.project-feature-image {
+  background-image: url(/assets/img/Projects/Kitchens/0319_HarrtownRoad/03042019_MrFixIt_HarrTown-46.jpg);
+
+  height: 350px;
+  background-position: center center;
+
+  .project-feature-header {
+    background-color: rgba(0, 0, 0, 0.6);
+
+    h2 {
+      @include xy-grid-container();
+      @include xy-grid();
+      padding: 5px;
+      font-family: 'Aleo';
+      font-size: rem-calc(20);
+      @include flex-align(right, bottom);
+      color: white;
+    }
+  }
+}
+
+.project-details {
+  @include xy-grid-container();
+  @include xy-grid();
+
+  .project-description {
+    @include xy-cell(7);
+    font-family: 'Aleo';
+    font-size: rem-calc(20);
+  }
+}
+
+.tnlicense {
+  width: 200px;
+  margin: 0 auto;
+}
+
+.custom-button-class {
+  @include button;
+  font-size: rem-calc(24);
+  margin-left: 9px;
+}
+
+.page-headlines {
+  @include xy-grid-container();
+  font-family: 'Aleo';
+
+  h1 {
+    @include xy-grid();
+    @include flex-align(center);
+    font-family: 'Aleo';
+    margin-top: 20px;
+  }
+
+  p {
+    font-size: 24px;
+    text-align: center;
+  }
+}
+
+.service-index {
+  @include xy-grid-container();
+  @include xy-grid();
+  .main-title {
+    color: #2d2d2d;
+    text-align: center;
+    text-transform: capitalize;
+    font-family: 'Aleo';
+    font-size: 36px;
+    padding: 0.7em 0;
+  }
+
+  .title {
+    color: #1a1a1a;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+
+  .content {
+    position: relative;
+    width: 90%;
+    max-width: 350px;
+    margin: auto;
+    overflow: hidden;
+    padding: 25px;
+  }
+
+  .content .content-overlay {
+    background: rgba(0, 0, 0, 0);
+    position: absolute;
+    height: 99%;
+    width: 100%;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    opacity: 0;
+    -webkit-transition: all 0.4s ease-in-out 0s;
+    -moz-transition: all 0.4s ease-in-out 0s;
+    transition: all 0.4s ease-in-out 0s;
+  }
+
+  .content:hover .content-overlay {
+    opacity: 1;
+  }
+
+  .content-image {
+    width: 100%;
+  }
+
+  .content-details {
+    position: absolute;
+    text-align: center;
+    padding-left: 1em;
+    padding-right: 1em;
+    width: 100%;
+    top: 50%;
+    left: 50%;
+    opacity: 0;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    -webkit-transition: all 0.3s ease-in-out 0s;
+    -moz-transition: all 0.3s ease-in-out 0s;
+    transition: all 0.3s ease-in-out 0s;
+  }
+
+  .content:hover .content-details {
+    top: 50%;
+    left: 50%;
+    opacity: 1;
+  }
+
+  .content-details h3 {
+    color: #fff;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    margin-bottom: 0.5em;
+    text-transform: uppercase;
+  }
+
+  .content-details p {
+    color: #fff;
+    font-size: 0.8em;
+  }
+
+  .fadeIn-bottom {
+    top: 80%;
+  }
+
+  .fadeIn-top {
+    top: 20%;
+  }
+
+  .fadeIn-left {
+    left: 20%;
+  }
+
+  .fadeIn-right {
+    left: 80%;
+  }
 }
